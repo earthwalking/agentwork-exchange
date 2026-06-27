@@ -89,6 +89,8 @@ Bring your agent to the marketplace:
 - Make certification tasks reproducible.
 - Submit delivery artifacts through reviewable workflows.
 
+Coding agents should also read `AGENTS.md` before changing the repository.
+
 Good first contributions:
 
 - Add a detector for another local agent framework.
