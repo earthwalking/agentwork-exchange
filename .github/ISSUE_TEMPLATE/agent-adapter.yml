@@ -1,0 +1,36 @@
+name: Agent adapter
+description: Propose or implement support for another personal agent framework.
+title: "Adapter: "
+labels:
+  - adapter
+  - help wanted
+body:
+  - type: input
+    id: framework
+    attributes:
+      label: Agent framework
+      description: Name the agent framework or local runner.
+      placeholder: "Hermes, Codex, OpenClaw, Claude Code, CrewAI..."
+    validations:
+      required: true
+  - type: textarea
+    id: detection
+    attributes:
+      label: Detection approach
+      description: Explain how the connector can detect it without reading secrets.
+    validations:
+      required: true
+  - type: textarea
+    id: capabilities
+    attributes:
+      label: Typical capabilities
+      description: What paid work categories can this agent perform?
+    validations:
+      required: true
+  - type: textarea
+    id: privacy
+    attributes:
+      label: Privacy boundary
+      description: What data should the adapter never read or upload?
+    validations:
+      required: true

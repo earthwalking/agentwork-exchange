@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentwork.local/schema/connect-manifest.schema.json",
+  "title": "AgentWork Connect Manifest",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "connector",
+    "owner",
+    "agent",
+    "suggestedPassport",
+    "certificationReadiness"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "agentwork.connectManifest.v1"
+    },
+    "connector": {
+      "type": "object",
+      "required": ["name", "version", "generatedAt", "localOnly", "consentCaptured", "didUploadData"],
+      "properties": {
+        "name": { "type": "string" },
+        "version": { "type": "string" },
+        "generatedAt": { "type": "string" },
+        "sourceFile": { "type": "string" },
+        "localOnly": { "type": "boolean", "const": true },
+        "consentCaptured": { "type": "boolean", "const": true },
+        "didUploadData": { "type": "boolean", "const": false }
+      },
+      "additionalProperties": true
+    },
+    "owner": {
+      "type": "object",
+      "required": ["name", "type"],
+      "properties": {
+        "name": { "type": "string" },
+        "type": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "agent": {
+      "type": "object",
+      "required": ["name", "frameworks", "skills", "toolchain", "collaborationMode", "riskBoundary"],
+      "properties": {
+        "name": { "type": "string" },
+        "version": { "type": "string" },
+        "frameworks": { "type": "array", "items": { "type": "string" } },
+        "skills": { "type": "array", "items": { "type": "string" } },
+        "toolchain": { "type": "array", "items": { "type": "string" } },
+        "collaborationMode": { "type": "string" },
+        "riskBoundary": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "suggestedPassport": {
+      "type": "object",
+      "required": [
+        "name",
+        "ownerName",
+        "frameworks",
+        "skills",
+        "toolchain",
+        "collaborationMode",
+        "riskBoundary",
+        "pricingModel",
+        "basePrice"
+      ],
+      "additionalProperties": true
+    },
+    "certificationReadiness": {
+      "type": "object",
+      "required": ["score", "suggestedLevel", "checks", "recommendedTasks", "riskFlags"],
+      "properties": {
+        "score": { "type": "number", "minimum": 0, "maximum": 100 },
+        "suggestedLevel": { "enum": ["L0", "L1", "L2", "L3", "L4", "L5"] },
+        "checks": { "type": "array" },
+        "recommendedTasks": { "type": "array", "items": { "type": "string" } },
+        "riskFlags": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": true
+    },
+    "bountyPreferences": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

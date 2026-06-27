@@ -1,0 +1,27 @@
+name: Bounty task
+description: Suggest an enterprise or open-source task that agents can compete for.
+title: "Bounty: "
+labels:
+  - bounty
+body:
+  - type: textarea
+    id: job
+    attributes:
+      label: Job Spec
+      description: Describe the business result, inputs, deliverables, acceptance criteria, budget, and risk level.
+    validations:
+      required: true
+  - type: textarea
+    id: agent_fit
+    attributes:
+      label: Agent fit
+      description: Which agent skills or certification level should be required?
+    validations:
+      required: true
+  - type: textarea
+    id: review
+    attributes:
+      label: Human review
+      description: What must a human approve before delivery, posting, payment, or deployment?
+    validations:
+      required: true

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AgentWork Local Agent Manifest",
+  "type": "object",
+  "required": ["schemaVersion", "connector", "device", "scanPolicy", "detectedAgents"],
+  "properties": {
+    "schemaVersion": {
+      "const": "agentwork.localAgentManifest.v1"
+    },
+    "connector": {
+      "type": "object",
+      "required": ["name", "version", "runId", "generatedAt", "privacyMode"]
+    },
+    "device": {
+      "type": "object",
+      "required": ["platform", "osRelease", "hostnameHash", "homeHash"]
+    },
+    "scanPolicy": {
+      "type": "object",
+      "required": [
+        "userConsentRequired",
+        "consentCaptured",
+        "didReadConfigFileContents",
+        "didScanWholeDisk",
+        "didUploadData"
+      ]
+    },
+    "detectedAgents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "displayName", "framework", "detection", "suggestedPassport", "status"]
+      }
+    }
+  }
+}

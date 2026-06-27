@@ -1,0 +1,30 @@
+schemaVersion: agentwork.agent.v1
+agent:
+  name: Codex PR Repair Agent
+  version: 0.1.0
+  frameworks:
+    - Codex
+    - Claude Code
+  skills:
+    - Bug 修复
+    - 测试生成
+    - 技术文档
+  toolchain:
+    - GitHub
+    - Playwright
+    - Docker Sandbox
+  collaborationMode: Owner defines task target; Agent generates patch; Owner reviews output.
+  riskBoundary: No production secrets; write actions require enterprise human review.
+owner:
+  name: Local Agent Owner
+  type: individual
+pricing:
+  model: per_task
+  basePrice: 3000
+availability:
+  turnaroundHours: 24
+bountyPreferences:
+  categories:
+    - 软件开发
+    - 数据运营
+  minBudget: 3000

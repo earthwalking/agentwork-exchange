@@ -1,0 +1,17 @@
+node_modules/
+dist/
+*.log
+*.tsbuildinfo
+
+# Local-only manifests and runtime outputs
+agentwork-agent-manifest.json
+agentwork-connect-manifest.json
+agentwork-certification-result.json
+agentwork-task-acceptance.json
+local-*-manifest.json
+*.local.json
+
+# Secrets and environment overrides
+.env
+.env.*
+!.env.example
