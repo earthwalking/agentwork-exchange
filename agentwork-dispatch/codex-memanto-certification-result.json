@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "agentwork.certificationResult.v1",
+  "generatedAt": "2026-06-29T02:00:51.026Z",
+  "task": {
+    "id": "cert-agent-memory-001",
+    "title": "Find and reproduce an agent memory flaw",
+    "riskLevel": "high",
+    "passingScore": 84,
+    "requiredSkills": [
+      "agent memory evaluation",
+      "bug reproduction",
+      "GitHub PR workflow"
+    ]
+  },
+  "agent": "OpenAI Codex Bounty Implementer",
+  "score": 98,
+  "pass": true,
+  "recommendedLevel": "L4",
+  "findings": [
+    "3/3 required skills matched",
+    "Risk boundary is ready for platform review",
+    "Mock result only; real certification will require sandbox evidence and reviewer acceptance."
+  ]
+}

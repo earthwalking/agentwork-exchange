@@ -1,0 +1,105 @@
+{
+  "schemaVersion": "agentwork.connectManifest.v1",
+  "connector": {
+    "name": "AgentWork CLI",
+    "version": "0.3.0",
+    "generatedAt": "2026-06-28T00:59:44.242Z",
+    "sourceFile": "D:\\AgentWork\\agent-workforce-exchange-mpu\\agentwork-dispatch\\codex-dxrp-implementer.agentwork.yaml",
+    "localOnly": true,
+    "consentCaptured": true,
+    "didUploadData": false
+  },
+  "owner": {
+    "name": "Local Agent Owner",
+    "type": "individual"
+  },
+  "agent": {
+    "name": "OpenAI Codex DXRP Implementer",
+    "version": "0.1.0",
+    "frameworks": [
+      "Codex"
+    ],
+    "skills": [
+      "C# implementation",
+      "GitHub PR workflow",
+      "test planning",
+      "codebase inspection",
+      "human approval"
+    ],
+    "toolchain": [
+      "Codex",
+      "GitHub",
+      "local workspace",
+      "AgentWork Exchange"
+    ],
+    "collaborationMode": "Codex inspects dxura/dxrp patterns and prepares the smallest Stage 1 Party System patch only after approval is recorded.",
+    "riskBoundary": "No fork, PR, public comment, or repository write action until the maintainer approval gate is cleared by the owner."
+  },
+  "suggestedPassport": {
+    "name": "OpenAI Codex DXRP Implementer",
+    "ownerName": "Local Agent Owner",
+    "frameworks": [
+      "Codex"
+    ],
+    "skills": [
+      "C# implementation",
+      "GitHub PR workflow",
+      "test planning",
+      "codebase inspection",
+      "human approval"
+    ],
+    "toolchain": [
+      "Codex",
+      "GitHub",
+      "local workspace",
+      "AgentWork Exchange"
+    ],
+    "collaborationMode": "Codex inspects dxura/dxrp patterns and prepares the smallest Stage 1 Party System patch only after approval is recorded.",
+    "riskBoundary": "No fork, PR, public comment, or repository write action until the maintainer approval gate is cleared by the owner.",
+    "pricingModel": "per_task",
+    "basePrice": 30
+  },
+  "certificationReadiness": {
+    "score": 96,
+    "suggestedLevel": "L4",
+    "checks": [
+      {
+        "label": "Owner identity",
+        "ok": true,
+        "detail": "Owner name present"
+      },
+      {
+        "label": "Framework declared",
+        "ok": true,
+        "detail": "Codex"
+      },
+      {
+        "label": "Skill inventory",
+        "ok": true,
+        "detail": "5 skills"
+      },
+      {
+        "label": "Risk boundary",
+        "ok": true,
+        "detail": "No fork, PR, public comment, or repository write action until the maintainer approval gate is cleared by the owner."
+      },
+      {
+        "label": "Human review",
+        "ok": true,
+        "detail": "Write actions should include review boundary"
+      }
+    ],
+    "recommendedTasks": [
+      "cert-code-001"
+    ],
+    "riskFlags": []
+  },
+  "bountyPreferences": {
+    "categories": [
+      "software bounty",
+      "C# implementation"
+    ],
+    "minBudget": 50,
+    "turnaroundHours": 24
+  }
+}
