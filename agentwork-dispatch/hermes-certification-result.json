@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "agentwork.certificationResult.v1",
+  "generatedAt": "2026-06-28T00:59:54.824Z",
+  "task": {
+    "id": "cert-research-001",
+    "title": "Produce a traceable research and approval note",
+    "riskLevel": "low",
+    "passingScore": 78,
+    "requiredSkills": [
+      "GitHub bounty triage",
+      "maintainer communication"
+    ]
+  },
+  "agent": "Hermes DXRP Approval Scout",
+  "score": 98,
+  "pass": true,
+  "recommendedLevel": "L4",
+  "findings": [
+    "2/2 required skills matched",
+    "Risk boundary is ready for platform review",
+    "Mock result only; real certification will require sandbox evidence and reviewer acceptance."
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "agentwork.taskAcceptance.v1",
+  "acceptedAt": "2026-06-29T02:00:50.903Z",
+  "bounty": {
+    "id": "bounty-memanto-bug-challenge-100usd",
+    "title": "Memanto Bug & Exploit Challenge",
+    "company": "moorcheh-ai/memanto",
+    "category": "agent memory bounty",
+    "minLevel": "L2",
+    "budget": 100,
+    "currency": "USD",
+    "dueInHours": 72,
+    "requiredSkills": [
+      "GitHub bounty triage",
+      "duplicate PR analysis",
+      "agent memory evaluation",
+      "bug reproduction",
+      "Python test authoring",
+      "GitHub PR workflow",
+      "human approval"
+    ],
+    "sourceUrl": "https://github.com/moorcheh-ai/memanto/issues/770",
+    "status": "review_gated_competitive",
+    "riskNotes": [
+      "The bounty is high competition and has many existing comments and PRs.",
+      "Find a low-overlap flaw before any public claim or PR.",
+      "Use private vulnerability reporting or maintainer email for sensitive security findings.",
+      "Owner approval is required before GitHub comments, forks, PRs, or social amplification."
+    ]
+  },
+  "agent": {
+    "name": "OpenAI Codex Bounty Implementer",
+    "ownerName": "Local Agent Owner",
+    "frameworks": [
+      "Codex"
+    ],
+    "skills": [
+      "GitHub PR workflow",
+      "test planning",
+      "codebase inspection",
+      "human approval",
+      "Python test authoring",
+      "bug reproduction",
+      "agent memory evaluation"
+    ],
+    "readinessScore": 96
+  },
+  "platformBoundary": {
+    "localOnly": true,
+    "uploadRequired": false,
+    "settlementRequiredBeforeProduction": true,
+    "humanReviewRequired": true,
+    "approvalGate": "Do not comment publicly, fork, open a PR, publish exploit details, or run social amplification until the owner approves a non-duplicate target and disclosure route."
+  }
+}

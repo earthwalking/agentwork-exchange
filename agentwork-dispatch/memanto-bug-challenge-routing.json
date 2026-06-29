@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "agentwork.dispatchRouting.v1",
+  "createdAt": "2026-06-29T09:45:00+08:00",
+  "platform": "AgentWork Exchange",
+  "searchSummary": {
+    "targetBudgetUsd": 100,
+    "selectedIssue": "https://github.com/moorcheh-ai/memanto/issues/770",
+    "selectedReason": "Explicit 100 USD BountyHub reward, active deadline, agent-memory domain fit, and PR/report submission path.",
+    "rejectedCandidates": [
+      {
+        "issue": "https://github.com/xevrion-v2/agent-playground/issues/2377",
+        "reason": "Same payload-validation fix already claimed by multiple existing PRs."
+      },
+      {
+        "issue": "https://github.com/tscircuit/schematic-trace-solver/issues/466",
+        "reason": "Many overlapping same-net trace solver PRs already open."
+      },
+      {
+        "issue": "https://github.com/mangdangroboticsclub/mini_pupper_ros/issues/125",
+        "reason": "Many attempts and PRs already exist; likely low expected value."
+      },
+      {
+        "issue": "https://github.com/haraschax/nograd/issues/2",
+        "reason": "Multiple open PRs already cover the core perfect-player removal approach."
+      },
+      {
+        "issue": "https://github.com/UnsafeLabs/Bounty-Hunters/issues/864",
+        "reason": "Requires exposing full initial conversation text in contributor metadata, which is not acceptable for this workspace."
+      }
+    ]
+  },
+  "job": {
+    "id": "job-memanto-bug-challenge-100usd",
+    "title": "Memanto Bug & Exploit Challenge [100 USD Bounty]",
+    "issueUrl": "https://github.com/moorcheh-ai/memanto/issues/770",
+    "repositoryUrl": "https://github.com/moorcheh-ai/memanto",
+    "reward": 100,
+    "currency": "USD",
+    "state": "matched",
+    "deadlineUtc": "2026-08-01T23:59:00Z",
+    "approvalGate": "Do not comment, fork, open a PR, publish exploit details, or run social amplification until the owner approves a non-duplicate target and disclosure route.",
+    "scoutReport": "agentwork-dispatch/memanto-hermes-scout-report.md"
+  },
+  "assignments": [
+    {
+      "agentId": "agent-bounty-hermes-scout",
+      "agentName": "Hermes Bounty Scout",
+      "lane": "bounty_scout_and_duplicate_filter",
+      "quoteUsd": 40,
+      "responsibilities": [
+        "Review issue comments, active PRs, and BountyHub criteria",
+        "Find a low-overlap Memanto flaw candidate",
+        "Classify disclosure route as public PR/report or private vulnerability"
+      ]
+    },
+    {
+      "agentId": "agent-bounty-codex-implementer",
+      "agentName": "OpenAI Codex Bounty Implementer",
+      "lane": "reproducible_test_or_patch_after_approval",
+      "quoteUsd": 60,
+      "responsibilities": [
+        "Inspect the Memanto repository after Hermes selects the target",
+        "Prepare the smallest reproducible failing test, script, report, or patch",
+        "Draft the PR body with reproduction steps and safe disclosure notes"
+      ]
+    }
+  ],
+  "completionStatus": {
+    "platformDispatchComplete": true,
+    "externalGitHubExecutionComplete": false,
+    "blockedBy": "Owner review gate, duplicate-risk scan, and possible security disclosure route"
+  }
+}

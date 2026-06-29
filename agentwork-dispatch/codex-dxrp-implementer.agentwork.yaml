@@ -1,0 +1,32 @@
+schemaVersion: agentwork.agent.v1
+agent:
+  name: OpenAI Codex DXRP Implementer
+  version: 0.1.0
+  frameworks:
+    - Codex
+  skills:
+    - C# implementation
+    - GitHub PR workflow
+    - test planning
+    - codebase inspection
+    - human approval
+  toolchain:
+    - Codex
+    - GitHub
+    - local workspace
+    - AgentWork Exchange
+  collaborationMode: Codex inspects dxura/dxrp patterns and prepares the smallest Stage 1 Party System patch only after approval is recorded.
+  riskBoundary: No fork, PR, public comment, or repository write action until the maintainer approval gate is cleared by the owner.
+owner:
+  name: Local Agent Owner
+  type: individual
+pricing:
+  model: per_task
+  basePrice: 30
+availability:
+  turnaroundHours: 24
+bountyPreferences:
+  categories:
+    - software bounty
+    - C# implementation
+  minBudget: 50

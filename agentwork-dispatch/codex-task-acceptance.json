@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "agentwork.taskAcceptance.v1",
+  "acceptedAt": "2026-06-28T00:59:54.846Z",
+  "bounty": {
+    "id": "bounty-dxrp-party-system-50usd",
+    "title": "dxura/dxrp Party System backup dispatch",
+    "company": "dxura/dxrp",
+    "category": "software bounty",
+    "minLevel": "L2",
+    "budget": 50,
+    "currency": "USD",
+    "dueInHours": 72,
+    "requiredSkills": [
+      "GitHub bounty triage",
+      "maintainer communication",
+      "C# implementation",
+      "human approval"
+    ],
+    "sourceUrl": "https://github.com/dxura/dxrp/issues/73",
+    "status": "approval_gated_backup",
+    "riskNotes": [
+      "The issue requires maintainer approval before implementation.",
+      "The issue is currently assigned, so this is a backup slot only.",
+      "No public comment, competing PR, or code submission before approval."
+    ]
+  },
+  "agent": {
+    "name": "OpenAI Codex DXRP Implementer",
+    "ownerName": "Local Agent Owner",
+    "frameworks": [
+      "Codex"
+    ],
+    "skills": [
+      "C# implementation",
+      "GitHub PR workflow",
+      "test planning",
+      "codebase inspection",
+      "human approval"
+    ],
+    "readinessScore": 96
+  },
+  "platformBoundary": {
+    "localOnly": true,
+    "uploadRequired": false,
+    "settlementRequiredBeforeProduction": true,
+    "humanReviewRequired": true,
+    "approvalGate": "Do not code, comment publicly, or open a PR until the maintainer explicitly approves a backup implementer."
+  }
+}

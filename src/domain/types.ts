@@ -34,7 +34,65 @@ export type JobStatus =
 export type RiskLevel = "low" | "medium" | "high";
 
 export type PricingModel = "per_task" | "retainer" | "outcome" | "hourly";
-export type Currency = "CNY" | "USD";
+export type Currency = "CNY" | "USD" | "RTC" | "MRWK" | "SATS" | "BCH" | "TOKEN";
+
+export type BountySourceKind =
+  | "GitHub"
+  | "BountyHub"
+  | "Algora"
+  | "Bountysource"
+  | "IssueHunt"
+  | "Manual";
+
+export type BountySourceStatus = "connected" | "manual" | "needs_auth";
+
+export type BountyOpportunityStatus =
+  | "collected"
+  | "verified"
+  | "published"
+  | "claimed"
+  | "in_progress"
+  | "delivered"
+  | "settled"
+  | "rejected";
+
+export interface BountySource {
+  id: string;
+  name: string;
+  kind: BountySourceKind;
+  url: string;
+  scanCadence: string;
+  lastScanAt: string;
+  status: BountySourceStatus;
+  collectedCount: number;
+  publishedCount: number;
+}
+
+export interface BountyOpportunity {
+  id: string;
+  sourceId: string;
+  sourcePlatform: BountySourceKind;
+  repository: string;
+  title: string;
+  sourceUrl: string;
+  bountyProvider: string;
+  rewardAmount: number;
+  currency: Currency;
+  rewardLabel: string;
+  status: BountyOpportunityStatus;
+  collectedAt: string;
+  updatedAt: string;
+  deadline?: string;
+  verificationScore: number;
+  payoutConfidence: RiskLevel;
+  duplicateRisk: RiskLevel;
+  difficulty: RiskLevel;
+  tags: string[];
+  requiredSkills: string[];
+  summary: string;
+  rejectionReason?: string;
+  routeJobId?: string;
+}
 
 export interface AgentOwner {
   id: string;
@@ -150,7 +208,7 @@ export interface AuditEvent {
   timestamp: string;
   actor: string;
   action: string;
-  objectType: "agent" | "job" | "match" | "delivery" | "settlement";
+  objectType: "agent" | "job" | "match" | "delivery" | "settlement" | "opportunity" | "source";
   objectId: string;
   detail: string;
 }

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "agentwork.certificationResult.v1",
+  "generatedAt": "2026-06-28T00:59:54.882Z",
+  "task": {
+    "id": "cert-code-001",
+    "title": "Repair a code issue and provide test evidence",
+    "riskLevel": "medium",
+    "passingScore": 82,
+    "requiredSkills": [
+      "C# implementation",
+      "GitHub PR workflow",
+      "test planning"
+    ]
+  },
+  "agent": "OpenAI Codex DXRP Implementer",
+  "score": 98,
+  "pass": true,
+  "recommendedLevel": "L4",
+  "findings": [
+    "3/3 required skills matched",
+    "Risk boundary is ready for platform review",
+    "Mock result only; real certification will require sandbox evidence and reviewer acceptance."
+  ]
+}

@@ -484,6 +484,8 @@ button:disabled {
 
 .level-L1,
 .level-L2,
+.status-collected,
+.status-verified,
 .status-open,
 .status-in_trial {
   color: var(--amber);
@@ -493,12 +495,32 @@ button:disabled {
 .level-L3,
 .level-L4,
 .level-L5,
+.status-published,
+.status-claimed,
+.status-in_progress,
 .status-matched,
 .status-delivered,
 .status-accepted,
-.status-settled {
+.status-settled,
+.status-ready_to_settle,
+.source-connected {
   color: var(--green);
   background: var(--green-soft);
+}
+
+.status-rejected,
+.status-revision_requested,
+.source-needs_auth {
+  color: var(--red);
+  background: var(--red-soft);
+}
+
+.status-trial_output,
+.status-final_output,
+.status-pending_acceptance,
+.source-manual {
+  color: var(--blue);
+  background: var(--blue-soft);
 }
 
 .certification-box {
@@ -958,6 +980,247 @@ button:disabled {
   margin: 10px 0 0;
 }
 
+.pipeline-strip {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(130px, 1fr));
+  gap: 10px;
+  margin: 0 0 16px;
+}
+
+.pipeline-step {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 2px 8px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px;
+  background: #fff;
+}
+
+.pipeline-step svg {
+  grid-row: span 2;
+  color: var(--blue);
+}
+
+.pipeline-step strong,
+.pipeline-step span {
+  display: block;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.pipeline-step strong {
+  line-height: 1.1;
+}
+
+.pipeline-step span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.operations-grid,
+.split-grid {
+  display: grid;
+  gap: 16px;
+  align-items: start;
+}
+
+.operations-grid {
+  grid-template-columns: minmax(420px, 0.95fr) minmax(520px, 1.05fr);
+}
+
+.split-grid {
+  grid-template-columns: minmax(420px, 0.9fr) minmax(520px, 1.1fr);
+}
+
+.source-panel,
+.opportunity-panel,
+.delivery-panel,
+.settlement-panel {
+  min-width: 0;
+}
+
+.source-grid,
+.opportunity-list,
+.agent-bench,
+.detail-grid,
+.settlement-list {
+  display: grid;
+  gap: 10px;
+}
+
+.source-card,
+.opportunity-card,
+.info-list,
+.opportunity-summary,
+.settlement-card {
+  min-width: 0;
+}
+
+.source-card,
+.opportunity-card,
+.info-list {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  background: #fff;
+}
+
+.source-card {
+  display: grid;
+  gap: 8px;
+}
+
+.source-card strong,
+.source-card span,
+.source-card small,
+.opportunity-card strong,
+.opportunity-card small,
+.opportunity-card p,
+.opportunity-card span,
+.info-list strong,
+.info-list span,
+.source-summary span,
+.reward-pill,
+.warning-text,
+.settlement-money span {
+  display: block;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.source-card span,
+.source-card small,
+.opportunity-card small,
+.source-summary span,
+.info-list span,
+.warning-text {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.mini-metrics,
+.risk-row,
+.tag-row,
+.source-summary,
+.settlement-money {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.mini-metrics span:not(.status-pill),
+.tag-row span,
+.risk-badge,
+.source-summary span,
+.settlement-money span {
+  border-radius: 999px;
+  padding: 5px 8px;
+  background: var(--slate-soft);
+  font-size: 12px;
+}
+
+.opportunity-list {
+  max-height: none;
+}
+
+.opportunity-card {
+  display: grid;
+  gap: 10px;
+}
+
+.opportunity-card p {
+  color: #3d4852;
+}
+
+.opportunity-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: start;
+}
+
+.reward-pill {
+  border-radius: 8px;
+  padding: 7px 10px;
+  color: var(--green);
+  background: var(--green-soft);
+  font-weight: 800;
+  text-align: right;
+}
+
+.warning-text {
+  border-left: 3px solid var(--red);
+  padding-left: 8px;
+  color: var(--red);
+}
+
+.risk-badge {
+  font-weight: 800;
+}
+
+.risk-low {
+  color: var(--green);
+  background: var(--green-soft);
+}
+
+.risk-medium {
+  color: var(--amber);
+  background: var(--amber-soft);
+}
+
+.risk-high {
+  color: var(--red);
+  background: var(--red-soft);
+}
+
+.link-button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: var(--blue);
+  background: #fff;
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.link-button:hover {
+  background: #f8fafb;
+}
+
+.detail-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 12px 0;
+}
+
+.info-list {
+  align-content: start;
+  gap: 7px;
+}
+
+.info-list strong {
+  margin-bottom: 4px;
+}
+
+.agent-bench {
+  align-content: start;
+}
+
+.delivery-card.active,
+.settlement-card.active {
+  border-color: #9bc2d5;
+  background: #f7fbfd;
+}
+
+.settlement-money span {
+  color: #38424b;
+}
+
 .page-footer {
   margin-top: 18px;
   border-top: 1px solid var(--line);
@@ -991,8 +1254,14 @@ button:disabled {
 
   .workspace-grid,
   .connector-layout,
-  .bounty-layout {
+  .bounty-layout,
+  .operations-grid,
+  .split-grid {
     grid-template-columns: 1fr;
+  }
+
+  .pipeline-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -1008,7 +1277,9 @@ button:disabled {
 
   .sidebar nav,
   .dashboard-grid,
-  .inline-form {
+  .inline-form,
+  .pipeline-strip,
+  .detail-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1018,6 +1289,10 @@ button:disabled {
   }
 
   .match-card {
+    grid-template-columns: 1fr;
+  }
+
+  .opportunity-main {
     grid-template-columns: 1fr;
   }
 

@@ -1,0 +1,100 @@
+{
+  "schemaVersion": "agentwork.bountyList.v1",
+  "tasks": [
+    {
+      "id": "bounty-memanto-bug-challenge-100usd",
+      "title": "Memanto Bug & Exploit Challenge",
+      "company": "moorcheh-ai/memanto",
+      "category": "agent memory bounty",
+      "minLevel": "L2",
+      "budget": 100,
+      "currency": "USD",
+      "dueInHours": 72,
+      "requiredSkills": [
+        "GitHub bounty triage",
+        "duplicate PR analysis",
+        "agent memory evaluation",
+        "bug reproduction",
+        "Python test authoring",
+        "GitHub PR workflow",
+        "human approval"
+      ],
+      "sourceUrl": "https://github.com/moorcheh-ai/memanto/issues/770",
+      "status": "review_gated_competitive",
+      "riskNotes": [
+        "The bounty is high competition and has many existing comments and PRs.",
+        "Find a low-overlap flaw before any public claim or PR.",
+        "Use private vulnerability reporting or maintainer email for sensitive security findings.",
+        "Owner approval is required before GitHub comments, forks, PRs, or social amplification."
+      ]
+    },
+    {
+      "id": "bounty-dxrp-party-system-50usd",
+      "title": "dxura/dxrp Party System backup dispatch",
+      "company": "dxura/dxrp",
+      "category": "software bounty",
+      "minLevel": "L2",
+      "budget": 50,
+      "currency": "USD",
+      "dueInHours": 72,
+      "requiredSkills": [
+        "GitHub bounty triage",
+        "maintainer communication",
+        "C# implementation",
+        "human approval"
+      ],
+      "sourceUrl": "https://github.com/dxura/dxrp/issues/73",
+      "status": "approval_gated_backup",
+      "riskNotes": [
+        "The issue requires maintainer approval before implementation.",
+        "The issue is currently assigned, so this is a backup slot only.",
+        "No public comment, competing PR, or code submission before approval."
+      ]
+    },
+    {
+      "id": "bounty-code-001",
+      "title": "React regression fix with e2e test",
+      "company": "Northstar SaaS",
+      "category": "software bounty",
+      "minLevel": "L3",
+      "budget": 6800,
+      "currency": "CNY",
+      "dueInHours": 48,
+      "requiredSkills": [
+        "bug fix",
+        "test generation",
+        "Playwright"
+      ]
+    },
+    {
+      "id": "bounty-research-001",
+      "title": "Overseas competitor and lead research",
+      "company": "Mingdao Robotics",
+      "category": "business research",
+      "minLevel": "L2",
+      "budget": 9500,
+      "currency": "CNY",
+      "dueInHours": 72,
+      "requiredSkills": [
+        "competitor research",
+        "sales lead research",
+        "report drafting"
+      ]
+    },
+    {
+      "id": "bounty-data-001",
+      "title": "CRM CSV cleanup and quality report",
+      "company": "Foresight Analytics",
+      "category": "data operations",
+      "minLevel": "L3",
+      "budget": 7200,
+      "currency": "CNY",
+      "dueInHours": 60,
+      "requiredSkills": [
+        "data cleanup",
+        "script automation",
+        "report generation"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "schemaVersion": "agentwork.connectManifest.v1",
+  "connector": {
+    "name": "AgentWork CLI",
+    "version": "0.3.0",
+    "generatedAt": "2026-06-28T00:59:44.242Z",
+    "sourceFile": "D:\\AgentWork\\agent-workforce-exchange-mpu\\agentwork-dispatch\\hermes-dxrp-scout.agentwork.yaml",
+    "localOnly": true,
+    "consentCaptured": true,
+    "didUploadData": false
+  },
+  "owner": {
+    "name": "Local Agent Owner",
+    "type": "individual"
+  },
+  "agent": {
+    "name": "Hermes DXRP Approval Scout",
+    "version": "0.1.0",
+    "frameworks": [
+      "Hermes"
+    ],
+    "skills": [
+      "GitHub bounty triage",
+      "maintainer communication",
+      "approval-gated workflow",
+      "source review"
+    ],
+    "toolchain": [
+      "GitHub",
+      "AgentWork Exchange",
+      "Markdown dispatch"
+    ],
+    "collaborationMode": "Hermes monitors dxura/dxrp#73, prepares a backup approval request, and waits for owner review before public action.",
+    "riskBoundary": "No spam comments, no public claims, no implementation work, and no GitHub writes before maintainer approval."
+  },
+  "suggestedPassport": {
+    "name": "Hermes DXRP Approval Scout",
+    "ownerName": "Local Agent Owner",
+    "frameworks": [
+      "Hermes"
+    ],
+    "skills": [
+      "GitHub bounty triage",
+      "maintainer communication",
+      "approval-gated workflow",
+      "source review"
+    ],
+    "toolchain": [
+      "GitHub",
+      "AgentWork Exchange",
+      "Markdown dispatch"
+    ],
+    "collaborationMode": "Hermes monitors dxura/dxrp#73, prepares a backup approval request, and waits for owner review before public action.",
+    "riskBoundary": "No spam comments, no public claims, no implementation work, and no GitHub writes before maintainer approval.",
+    "pricingModel": "per_task",
+    "basePrice": 20
+  },
+  "certificationReadiness": {
+    "score": 96,
+    "suggestedLevel": "L4",
+    "checks": [
+      {
+        "label": "Owner identity",
+        "ok": true,
+        "detail": "Owner name present"
+      },
+      {
+        "label": "Framework declared",
+        "ok": true,
+        "detail": "Hermes"
+      },
+      {
+        "label": "Skill inventory",
+        "ok": true,
+        "detail": "4 skills"
+      },
+      {
+        "label": "Risk boundary",
+        "ok": true,
+        "detail": "No spam comments, no public claims, no implementation work, and no GitHub writes before maintainer approval."
+      },
+      {
+        "label": "Human review",
+        "ok": true,
+        "detail": "Write actions should include review boundary"
+      }
+    ],
+    "recommendedTasks": [
+      "cert-code-001"
+    ],
+    "riskFlags": []
+  },
+  "bountyPreferences": {
+    "categories": [
+      "software bounty",
+      "GitHub approval"
+    ],
+    "minBudget": 50,
+    "turnaroundHours": 12
+  }
+}

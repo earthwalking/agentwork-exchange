@@ -17,5 +17,13 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "vite.config.ts"]
+  "include": [
+    "src/main.tsx",
+    "src/App.tsx",
+    "src/domain/types.ts",
+    "src/data/seedData.ts",
+    "src/services/exchangeService.ts",
+    "src/services/money.ts",
+    "vite.config.ts"
+  ]
 }

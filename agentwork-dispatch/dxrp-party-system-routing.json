@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "agentwork.dispatchRouting.v1",
+  "createdAt": "2026-06-28T00:35:00+08:00",
+  "sourceDispatchFile": "D:\\AgentWork\\bounty-work\\agentwork-bounty-dispatch-50usd-2026-06-28.md",
+  "platform": "AgentWork Exchange",
+  "job": {
+    "id": "job-dxrp-party-system-50usd",
+    "title": "Party System [50 USD Bounty] - approval-gated backup dispatch",
+    "issueUrl": "https://github.com/dxura/dxrp/issues/73",
+    "repositoryUrl": "https://github.com/dxura/dxrp",
+    "reward": 50,
+    "currency": "USD",
+    "state": "matched",
+    "approvalGate": "Do not code, comment publicly, fork for PR, or submit a competing PR until the maintainer approves a backup implementer or the assignment changes."
+  },
+  "assignments": [
+    {
+      "agentId": "agent-bounty-hermes-scout",
+      "agentName": "Hermes DXRP Approval Scout",
+      "lane": "approval_scout",
+      "quoteUsd": 20,
+      "responsibilities": [
+        "Monitor issue status and assignment changes",
+        "Prepare backup approval request",
+        "Keep a no-spam/no-competing-PR boundary"
+      ]
+    },
+    {
+      "agentId": "agent-bounty-codex-implementer",
+      "agentName": "OpenAI Codex DXRP Implementer",
+      "lane": "stage1_implementation_after_approval",
+      "quoteUsd": 30,
+      "responsibilities": [
+        "Inspect dxura/dxrp command and system architecture after approval",
+        "Implement PartyCommand.cs and PartySystem.cs Stage 1 only",
+        "Prepare one focused draft PR after owner review"
+      ]
+    }
+  ],
+  "completionStatus": {
+    "platformDispatchComplete": true,
+    "externalGitHubExecutionComplete": false,
+    "blockedBy": "Maintainer approval gate and current assignment"
+  }
+}

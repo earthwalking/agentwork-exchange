@@ -70,10 +70,10 @@ export function submitAgent(
       id: makeId("audit"),
       timestamp: nowIso(),
       actor: owner.name,
-      action: "提交 Agent Passport",
+      action: "Submitted Agent Passport",
       objectType: "agent",
       objectId: agent.id,
-      detail: `${agent.name} 已进入 L0 待认证状态。`,
+      detail: `${agent.name} entered L0 certification queue.`,
     },
   };
 }
@@ -83,7 +83,7 @@ export function runCertification(
   task: CertificationTask,
 ): { agent: AgentPassport; run: CertificationRun; audit: AuditEvent } {
   const skillMatch = task.requiredSkills.filter((skill) =>
-    agent.skills.some((agentSkill) => agentSkill.includes(skill) || skill.includes(agentSkill)),
+    agent.skills.some((agentSkill) => fuzzyIncludes(agentSkill, skill) || fuzzyIncludes(skill, agentSkill)),
   ).length;
   const toolBonus = Math.min(agent.toolchain.length * 2, 10);
   const frameworkBonus = agent.frameworks.some((framework) =>
@@ -113,15 +113,13 @@ export function runCertification(
     score,
     pass,
     findings: [
-      skillMatch > 0
-        ? `匹配 ${skillMatch}/${task.requiredSkills.length} 个关键技能。`
-        : "关键技能匹配不足，需要人工复核。",
+      `${skillMatch}/${task.requiredSkills.length} required skills matched.`,
       pass
-        ? `建议认证为 ${recommendedLevel}，可进入对应风险边界任务。`
-        : "未达通过线，建议补充样例和工具调用记录。",
-      agent.riskBoundary.includes("人审") || agent.riskBoundary.includes("reviewer")
-        ? "风险边界包含人审节点。"
-        : "建议补充人审或回滚机制。",
+        ? `Recommended certification level: ${recommendedLevel}.`
+        : "Below passing score; add tool evidence and reviewed examples.",
+      includesReviewBoundary(agent.riskBoundary)
+        ? "Risk boundary includes human review."
+        : "Risk boundary should explicitly include human review.",
     ],
     recommendedLevel,
   };
@@ -133,10 +131,10 @@ export function runCertification(
       id: makeId("audit"),
       timestamp: nowIso(),
       actor: "Certification Engine",
-      action: pass ? "通过认证试工" : "认证试工未通过",
+      action: pass ? "Passed certification task" : "Certification task needs work",
       objectType: "agent",
       objectId: agent.id,
-      detail: `${agent.name} 在「${task.title}」中得分 ${score}，推荐等级 ${recommendedLevel}。`,
+      detail: `${agent.name} scored ${score} on "${task.title}" and was recommended for ${recommendedLevel}.`,
     },
   };
 }
@@ -158,10 +156,10 @@ export function submitJob(input: JobSubmissionInput): {
       id: makeId("audit"),
       timestamp: nowIso(),
       actor: input.company,
-      action: "发布企业任务",
+      action: "Published enterprise job",
       objectType: "job",
       objectId: job.id,
-      detail: `${job.title} 已进入开放匹配池，预算 ${job.budget} 元。`,
+      detail: `${job.title} entered the matching pool with budget ${job.budget}.`,
     },
   };
 }
@@ -184,13 +182,13 @@ export function generateMatches(
       id: makeId("audit"),
       timestamp: nowIso(),
       actor: "Matching Engine",
-      action: "生成候选匹配",
+      action: "Generated candidate matches",
       objectType: "job",
       objectId: job.id,
       detail:
         matches.length > 0
-          ? `为「${job.title}」生成 ${matches.length} 个候选 Agent。`
-          : `未找到满足 ${job.minCertificationLevel} 和技能要求的 Agent。`,
+          ? `Generated ${matches.length} candidate Agent matches for "${job.title}".`
+          : `No Agent met ${job.minCertificationLevel} and skill requirements for "${job.title}".`,
     },
   };
 }
@@ -206,10 +204,10 @@ export function acceptMatch(
       id: makeId("audit"),
       timestamp: nowIso(),
       actor: job.company,
-      action: "接受匹配并进入试工",
+      action: "Accepted match for trial",
       objectType: "match",
       objectId: match.id,
-      detail: `企业接受匹配，报价 ${match.quotedPrice} 元，预计 ${match.estimatedHours} 小时。`,
+      detail: `Accepted quoted price ${match.quotedPrice} with estimated ${match.estimatedHours} hours.`,
     },
   };
 }
@@ -230,14 +228,14 @@ export function submitDelivery(
     agentId: match.agentId,
     submittedAt: nowIso(),
     status: "final_output",
-    summary: `已按验收标准提交 ${job.expectedDeliverables.join("、")}。`,
+    summary: `Submitted ${job.expectedDeliverables.join(", ")}.`,
     artifacts: job.expectedDeliverables.map((item) =>
-      item.toLowerCase().replace(/\s+/g, "_").replace(/[^\w\u4e00-\u9fa5]/g, ""),
+      item.toLowerCase().replace(/\s+/g, "_").replace(/[^\w-]/g, ""),
     ),
     qualityScore,
     humanReviewNotes: job.requiresHumanReview
-      ? "等待企业 reviewer 确认交付。"
-      : "低风险任务可直接验收。",
+      ? "Waiting for enterprise reviewer acceptance."
+      : "Low-risk task can move to acceptance review.",
   };
   const platformFee = Math.round(match.quotedPrice * match.marginRate);
   const settlement: SettlementRecord = {
@@ -248,6 +246,7 @@ export function submitDelivery(
     enterprisePaid: match.quotedPrice,
     platformFee,
     ownerPayout: match.quotedPrice - platformFee,
+    currency: match.currency || job.currency,
     status: "pending_acceptance",
   };
 
@@ -259,10 +258,10 @@ export function submitDelivery(
       id: makeId("audit"),
       timestamp: nowIso(),
       actor: "Secure Runtime",
-      action: "提交交付物",
+      action: "Submitted delivery",
       objectType: "delivery",
       objectId: delivery.id,
-      detail: `${job.title} 已完成交付，质量分 ${qualityScore}。`,
+      detail: `${job.title} delivery submitted with quality score ${qualityScore}.`,
     },
   };
 }
@@ -279,16 +278,16 @@ export function acceptDelivery(
 } {
   return {
     job: { ...job, status: "accepted" },
-    delivery: { ...delivery, status: "accepted", humanReviewNotes: "企业验收通过，进入结算。" },
+    delivery: { ...delivery, status: "accepted", humanReviewNotes: "Accepted by enterprise reviewer." },
     settlement: { ...settlement, status: "ready_to_settle" },
     audit: {
       id: makeId("audit"),
       timestamp: nowIso(),
       actor: job.company,
-      action: "验收交付",
+      action: "Accepted delivery",
       objectType: "delivery",
       objectId: delivery.id,
-      detail: `${job.company} 接受交付，准备向 Agent Owner 分账。`,
+      detail: `${job.company} accepted the delivery and released it to settlement.`,
     },
   };
 }
@@ -304,10 +303,10 @@ export function settlePayment(
       id: makeId("audit"),
       timestamp: nowIso(),
       actor: "Settlement Engine",
-      action: "完成结算分账",
+      action: "Completed settlement",
       objectType: "settlement",
       objectId: settlement.id,
-      detail: `企业支付 ${settlement.enterprisePaid} 元，平台服务费 ${settlement.platformFee} 元，Owner 分账 ${settlement.ownerPayout} 元。`,
+      detail: `Enterprise paid ${settlement.enterprisePaid}; platform fee ${settlement.platformFee}; owner payout ${settlement.ownerPayout}.`,
     },
   };
 }
@@ -337,12 +336,12 @@ export function buildExchangeReport(
 
 export function levelLabel(level: CertificationLevel) {
   const labels: Record<CertificationLevel, string> = {
-    L0: "L0 未认证",
-    L1: "L1 沙箱试工",
-    L2: "L2 只读生产",
-    L3: "L3 人审写入",
-    L4: "L4 受控自动执行",
-    L5: "L5 高合规托管",
+    L0: "L0 Unverified",
+    L1: "L1 Sandbox Trial",
+    L2: "L2 Read-only/Approval Gate",
+    L3: "L3 Human-reviewed Write",
+    L4: "L4 Controlled Automation",
+    L5: "L5 High-compliance Delegation",
   };
   return labels[level];
 }
@@ -353,7 +352,7 @@ function scoreMatch(
   owner?: AgentOwner,
 ): MatchCandidate {
   const requiredMatches = job.requiredSkills.filter((skill) =>
-    agent.skills.some((agentSkill) => skill.includes(agentSkill) || agentSkill.includes(skill)),
+    agent.skills.some((agentSkill) => fuzzyIncludes(agentSkill, skill) || fuzzyIncludes(skill, agentSkill)),
   );
   const categoryBonus = agent.tags.some((tag) => job.category.toLowerCase().includes(tag)) ? 8 : 0;
   const levelBonus = (levelRank[agent.certificationLevel] - levelRank[job.minCertificationLevel]) * 5;
@@ -384,27 +383,38 @@ function scoreMatch(
     agentId: agent.id,
     score,
     quotedPrice,
+    currency: job.currency,
     estimatedHours: Math.max(4, Math.round(agent.avgTurnaroundHours * (100 / Math.max(score, 60)))),
     marginRate: score >= 90 ? 0.22 : 0.2,
     reasons: [
-      `${requiredMatches.length}/${job.requiredSkills.length} 个技能匹配`,
-      `${levelLabel(agent.certificationLevel)} 满足最低 ${levelLabel(job.minCertificationLevel)}`,
-      `历史成功率 ${Math.round(agent.successRate * 100)}%，基准分 ${agent.benchmarkScore}`,
+      `${requiredMatches.length}/${job.requiredSkills.length} required skills matched.`,
+      `${levelLabel(agent.certificationLevel)} meets minimum ${levelLabel(job.minCertificationLevel)}.`,
+      `Historical success ${Math.round(agent.successRate * 100)}%; benchmark ${agent.benchmarkScore}.`,
     ],
     constraints: [
       agent.riskBoundary,
-      job.requiresHumanReview ? "企业验收和高风险动作必须人审。" : "低风险任务可走快速验收。",
+      job.requiresHumanReview
+        ? "Enterprise acceptance and high-risk actions require human review."
+        : "Low-risk task can use fast acceptance.",
     ],
   };
 }
 
 function inferLevel(score: number, riskLevel: string, boundary: string): CertificationLevel {
-  if (score >= 94 && riskLevel !== "high" && boundary.includes("私有")) return "L5";
+  if (score >= 94 && riskLevel !== "high" && /private|compliance/i.test(boundary)) return "L5";
   if (score >= 90 && riskLevel !== "high") return "L4";
-  if (score >= 84 && (boundary.includes("人审") || boundary.includes("reviewer"))) return "L3";
+  if (score >= 84 && includesReviewBoundary(boundary)) return "L3";
   if (score >= 78) return "L2";
   if (score >= 70) return "L1";
   return "L0";
+}
+
+function includesReviewBoundary(text: string) {
+  return /review|human|approval|reviewer/i.test(text);
+}
+
+function fuzzyIncludes(a: string, b: string) {
+  return a.toLowerCase().includes(b.toLowerCase());
 }
 
 function clamp(value: number, min: number, max: number) {

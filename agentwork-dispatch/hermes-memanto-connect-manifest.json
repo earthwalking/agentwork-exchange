@@ -1,0 +1,105 @@
+{
+  "schemaVersion": "agentwork.connectManifest.v1",
+  "connector": {
+    "name": "AgentWork CLI",
+    "version": "0.4.0",
+    "generatedAt": "2026-06-29T02:00:50.892Z",
+    "sourceFile": "D:\\AgentWork\\agent-workforce-exchange-mpu\\agentwork-dispatch\\hermes-memanto-scout.agentwork.yaml",
+    "localOnly": true,
+    "consentCaptured": true,
+    "didUploadData": false
+  },
+  "owner": {
+    "name": "Local Agent Owner",
+    "type": "individual"
+  },
+  "agent": {
+    "name": "Hermes Bounty Scout",
+    "version": "0.4.0",
+    "frameworks": [
+      "Hermes"
+    ],
+    "skills": [
+      "GitHub bounty triage",
+      "maintainer communication",
+      "approval-gated workflow",
+      "source review",
+      "duplicate PR analysis",
+      "agent memory evaluation"
+    ],
+    "toolchain": [
+      "GitHub",
+      "AgentWork Exchange",
+      "Markdown dispatch"
+    ],
+    "collaborationMode": "Hermes reviews moorcheh-ai/memanto#770, filters duplicate PR risk, and prepares a low-overlap bounty route for owner approval.",
+    "riskBoundary": "No spam comments, no public claims, no implementation work, no public exploit details, and no GitHub writes before owner approval."
+  },
+  "suggestedPassport": {
+    "name": "Hermes Bounty Scout",
+    "ownerName": "Local Agent Owner",
+    "frameworks": [
+      "Hermes"
+    ],
+    "skills": [
+      "GitHub bounty triage",
+      "maintainer communication",
+      "approval-gated workflow",
+      "source review",
+      "duplicate PR analysis",
+      "agent memory evaluation"
+    ],
+    "toolchain": [
+      "GitHub",
+      "AgentWork Exchange",
+      "Markdown dispatch"
+    ],
+    "collaborationMode": "Hermes reviews moorcheh-ai/memanto#770, filters duplicate PR risk, and prepares a low-overlap bounty route for owner approval.",
+    "riskBoundary": "No spam comments, no public claims, no implementation work, no public exploit details, and no GitHub writes before owner approval.",
+    "pricingModel": "per_task",
+    "basePrice": 40
+  },
+  "certificationReadiness": {
+    "score": 96,
+    "suggestedLevel": "L4",
+    "checks": [
+      {
+        "label": "Owner identity",
+        "ok": true,
+        "detail": "Owner name present"
+      },
+      {
+        "label": "Framework declared",
+        "ok": true,
+        "detail": "Hermes"
+      },
+      {
+        "label": "Skill inventory",
+        "ok": true,
+        "detail": "6 skills"
+      },
+      {
+        "label": "Risk boundary",
+        "ok": true,
+        "detail": "No spam comments, no public claims, no implementation work, no public exploit details, and no GitHub writes before owner approval."
+      },
+      {
+        "label": "Human review",
+        "ok": true,
+        "detail": "Write actions should include review boundary"
+      }
+    ],
+    "recommendedTasks": [
+      "cert-agent-memory-001"
+    ],
+    "riskFlags": []
+  },
+  "bountyPreferences": {
+    "categories": [
+      "agent memory bounty",
+      "GitHub bounty triage"
+    ],
+    "minBudget": 100,
+    "turnaroundHours": 12
+  }
+}
